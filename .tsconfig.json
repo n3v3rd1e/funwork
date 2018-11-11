@@ -1,0 +1,29 @@
+{
+	"compilerOptions": {
+		"target": "es5",
+		"moduleResolution": "node",
+		"module": "commonjs",
+		"sourceMap": true,
+		"baseUrl": "./",
+		"jsx": "preserve",
+		"lib": ["esnext", "dom"],
+		"noEmit": true,
+		"skipLibCheck": true,
+		"paths": {
+			"~": ["node_modules"],
+			"@button": ["src/components/reusable/Button/Button.tsx"],
+			"@framework/*": ["framework/*"],
+			"@reusable/*": ["src/components/reusable/*"],
+			"@components/*": ["src/components/*"],
+			"@enums/*": ["src/enums/*"],
+			"@router": ["src/router/index.ts"],
+			"@store/*": ["src/store/*"],
+			"@mixins": ["src/styles/mixins.less"],
+			"@variables": ["src/styles/variables.less"],
+			"@styles/*": ["src/styles/*"],
+			"@utils/*": ["src/utils/*"],
+			"@views/*": ["src/views/*"],
+			"@/*": ["src/*"]
+		}
+	}
+}
