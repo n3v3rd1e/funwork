@@ -1,12 +1,14 @@
 const path = require('path');
 const webpack = require('webpack');
 const chalk = require('chalk');
+const CleanWebpackPlugin = require('clean-webpack-plugin')
 const FriendlyErrors = require('friendly-errors-webpack-plugin');
 const ProgressBarPlugin = require('progress-bar-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 
 const envConfig = require('./src/.env.js');
 const isDev = process.env.NODE_ENV === 'development';
@@ -14,8 +16,8 @@ const port = process.env.PORT || 4000;
 
 const config = {
 	entry: isDev
-		? ['./src/index.tsx', './framework/index.ts']
-		: ['@babel/polyfill', './src/index.tsx', './framework/index.ts'],
+		? ['./src/index.tsx']
+		: ['@babel/polyfill', './src/index.tsx'],
 	mode: isDev ? 'development' : 'production',
 	module: {
 		rules: [
@@ -46,7 +48,15 @@ const config = {
 			},
 			{
 				test: /\.(ts|tsx)$/,
-				use: 'babel-loader',
+				use: [
+					'babel-loader',
+					// {
+					// 	loader: 'ts-loader',
+					// 	options: {
+					// 		transpileOnly: true
+					// 	}
+					// }
+				],
 				exclude: /node_modules/
 			},
 			{
@@ -136,6 +146,8 @@ const config = {
 		hints: false
 	},
 	plugins: [
+		new CleanWebpackPlugin(path.resolve(__dirname, './dist')),
+		new ForkTsCheckerWebpackPlugin(),
 		new webpack.ContextReplacementPlugin(/moment[/\\]locale$/, /en/),
 		new webpack.EnvironmentPlugin(envConfig),
 		new HtmlWebpackPlugin({

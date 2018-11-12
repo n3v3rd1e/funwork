@@ -1,8 +1,8 @@
-import Snabbdom from 'snabbdom-pragma';
+import * as Snabbdom from 'snabbdom-pragma';
 Snabbdom;
 
-import Button from './components/reusable/Button/Button';
+import Button from '@reusable/Button/Button';
 
 export default function App() {
-	return <div>This is basic shit app. <Button text={'hello'} /></div>;
+	return <div>This is basic shit app. <Button text={'helloo'} /></div>;
 }

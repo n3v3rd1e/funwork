@@ -1,11 +1,13 @@
 {
 	"compilerOptions": {
+		"allowSyntheticDefaultImports": true,
 		"target": "es5",
 		"moduleResolution": "node",
 		"module": "commonjs",
 		"sourceMap": true,
 		"baseUrl": "./",
-		"jsx": "preserve",
+		"jsx": "react",
+    "jsxFactory": "Snabbdom.createElement",
 		"lib": ["esnext", "dom"],
 		"noEmit": true,
 		"skipLibCheck": true,
