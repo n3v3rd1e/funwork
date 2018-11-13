@@ -1,5 +1,5 @@
 import Snabbdom from 'snabbdom-pragma';
-Snabbdom;
+Snabbdom
 import './Button.less';
 
 export default function Button({ text }) {
