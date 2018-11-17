@@ -1,22 +1,16 @@
-import Snabbdom from 'snabbdom-pragma';
-Snabbdom;
-import { init } from 'snabbdom';
-import classMode from 'snabbdom/es/modules/class';
-import props from 'snabbdom/es/modules/props';
-import style from 'snabbdom/es/modules/style';
-import eventlisteners from 'snabbdom/es/modules/eventlisteners';
-import toVnode from 'snabbdom/es/tovnode';
-
 import App from '@/App';
+import { run } from '@framework/index';
 
-const patch = init([classMode, props, style, eventlisteners]);
+const mount = selector => document.querySelector(selector);
 
-const app = document.querySelector('#app');
-patch(app, <App />);
+run(App, {
+	DOM: mount('#app')
+});
 
 if (module.hot) {
 	module.hot.accept('@/App', () => {
-		const newApp = toVnode(document.querySelector('#app'));
-		patch(newApp, <App />);
-	});
+		run(App, {
+			DOM: mount('#app')
+		});
+	})
 }

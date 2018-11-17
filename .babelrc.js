@@ -1,6 +1,5 @@
 const config = {
 	presets: [
-		'@babel/preset-typescript',
 		[
 			'@babel/preset-react',
 			{
@@ -11,11 +10,13 @@ const config = {
 		]
 	],
 	plugins: [
+		["@babel/plugin-transform-typescript", { isTSX: true, jsxPragma: 'Snabbdom.createElement', allExtensions: true }],
+		["@babel/plugin-syntax-object-rest-spread"],
 		['@babel/plugin-proposal-async-generator-functions', { loose: true }],
 		['@babel/plugin-syntax-dynamic-import'],
 		['@babel/proposal-class-properties', { loose: true }],
 		['@babel/proposal-decorators', { loose: true, legacy: true }],
-		['@babel/proposal-object-rest-spread', { loose: true }],
+		['@babel/proposal-object-rest-spread', { loose: true }]
 	],
 	ignore: ['node_modules', 'build']
 };

@@ -1,15 +1,34 @@
+import O from 'patchinko/constant';
 import Snabbdom from 'snabbdom-pragma';
 Snabbdom;
-import Button from '@reusable/Button/Button';
-import { add } from '@framework/modules/fok';
 
-const number = add(4)(3);
+const actions = update => {
+	return {
+		increase: () => update({ count: O(value => value + 1) })
+	};
+};
 
-export default function App() {
+const view = actions => model => {
 	return (
 		<div id="app">
-			This is basic shit app. {number}
-			<Button text={'hello'} />
+			This is basic shit app. {model.count}
+			<button
+				class={{ button: true }}
+				on={{
+					click: actions.increase
+				}}
+			>
+				Increase count
+			</button>
 		</div>
 	);
+};
+
+export default function App(update) {
+	return {
+		model: () => ({
+			count: 7
+		}),
+		view: view(actions(update))
+	};
 }
