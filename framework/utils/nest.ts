@@ -9,7 +9,6 @@ const nestPatch = (object, path) => ({
 
 const nestUpdate = (update, path) => patch => update(nestPatch(patch, path));
 
-// eslint-disable-next-line no-unused-vars
 const nest = (create, update, path) => {
 	const component = create(nestUpdate(update, path));
 	const result = O({}, component);
