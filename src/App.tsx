@@ -1,60 +1,53 @@
 import Title from '@components/Title/Title';
 import nest from '@framework/utils/nest';
-import O from 'patchinko/constant';
+import O from 'patchinko/immutable';
 import Snabbdom from 'snabbdom-pragma';
 Snabbdom;
 
-const actions = update => {
-	return {
-		increase: () => update({ count: O(value => value + 1) })
+export default function App(actions) {
+	// const createActions = present => ({
+	// 	increase: count => present({ count: count + 1 })
+	// });
+
+	const acceptor = (model, proposal) => {
+		console.log('inAcceptor');
+		return O(model, proposal);
 	};
-};
 
-const view = ({ components, actions }) => model => {
-	const { MainTitle, SecondaryTitle } = components;
-	const { increase } = actions;
-	const { count, mainTitle, secondaryTitle } = model;
+	const countState = model => ({ count: model.count })
 
-	return (
-		<div id="app">
-			<MainTitle mainTitle={{ ...mainTitle, testing: 'Fok oFF mATE' }}>
-				Child inside
-			</MainTitle>
-			<SecondaryTitle
-				secondaryTitle={{ ...secondaryTitle, testing: 'Who is mate, nigga' }}
-			/>
-			This is basic shit app. {count}
-			<button
-				class={{ button: true }}
-				on={{
-					click: increase
-				}}
-			>
-				Increase count
-			</button>
-		</div>
-	);
-};
+	const state = model => [
+		countState
+	].reduce((state, stateFunction) => O(state, stateFunction(state)), model);
 
-export default function App(update) {
-	const mainTitle = nest(Title, update, ['mainTitle']);
-	const secondaryTitle = nest(Title, update, ['secondaryTitle']);
+	// const createNap = actions => state => {
+	// 	console.log('in createNap');
+	// }
 
-	const components = {
-		MainTitle: mainTitle.view,
-		SecondaryTitle: secondaryTitle.view
-	};
+	const createView = actions => {
+
+		return model => {
+			return (
+				<div id="app">
+					<div>
+						Current count is: {model.count}
+					</div>
+					<div>
+						<button on={{ click: () => actions.increase(model.count) }}>
+							Increase count
+						</button>
+					</div>
+				</div>
+			)
+		}
+
+	}
 
 	return {
-		model: () =>
-			O(
-				{
-					count: 7
-				},
-				mainTitle.model(),
-				secondaryTitle.model()
-			),
-
-		view: view({ components, actions: actions(update) })
+		initialModel: () => ({ count: 7 }),
+		acceptor,
+		state,
+		view: createView(actions)
 	};
+
 }

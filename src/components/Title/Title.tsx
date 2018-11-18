@@ -7,16 +7,18 @@ const actions = update => {
 	};
 };
 
-const view = ({ actions }) => model => {
+const view = ({ actions }) => (model, children) => {
 	const { setTitle } = actions;
-	const { title, testing, random } = model;
-	console.log('model', model);
+	const { title, testing, random, fok } = model;
+	console.log('in model', model);
 
 	return (
 		<div component="title">
-			{title}
-			{testing}
-			random shit: {random}
+			<div>{title}</div>
+			<div>{testing}</div>
+			<div>random shit: {random}</div>
+			<div>Fok: {fok}</div>
+			<div>{children}</div>
 			<input
 				type="text"
 				on={{
@@ -35,7 +37,8 @@ export default update => {
 
 	return {
 		model: () => ({
-			title: 'This is my amazing app.'
+			title: 'This is my amazing app.',
+			fok: 'default'
 		}),
 		view: model => view({ actions: actions(update) })(computed(model))
 	};
