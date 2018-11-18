@@ -15,10 +15,14 @@ interface Sources {
 }
 
 const createActions = present => ({
-	increase: count => present({ count: count + 1 })
+	increase: count => present({ count: count + 1 }),
+	resetCount: () => present({ count: 4 })
 });
 
 const createNap = actions => state => {
+	if (state.count >= 12) {
+		setTimeout(() => actions.resetCount(), 2000);
+	}
 	console.log('in createNap');
 }
 
@@ -40,18 +44,3 @@ export const run = (component, sources: Sources) => {
 	}, states)
 	flyd.on(nap, states);
 }
-
-// export const run = (main, sources: Sources) => {
-// 	const update = flyd.stream()
-// 		update.map(item => {
-// 			console.log(item);
-// 			return item;
-// 		})
-// 	const app = main(update);
-// 	const models = flyd.scan(O, app.model(), update);
-// 	flyd.scan(
-// 		(rootNode, model) => patch(rootNode, app.view(model)),
-// 		sources.DOM,
-// 		models
-// 	);
-// };
