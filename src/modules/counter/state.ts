@@ -1,6 +1,6 @@
-export const state = model => ({
-	count: model.count
-});
+export const state = {
+	count: model => model.count
+};
 
 export const nap = actions => state => {
 	console.log('Counter nap');

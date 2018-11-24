@@ -50,12 +50,6 @@ const config = {
 				test: /\.(ts|tsx)$/,
 				use: [
 					'babel-loader',
-					// {
-					// 	loader: 'ts-loader',
-					// 	options: {
-					// 		transpileOnly: true
-					// 	}
-					// }
 				],
 				exclude: /node_modules/
 			},
@@ -122,19 +116,15 @@ const config = {
 		extensions: ['.mjs', '.js', '.jsx', '.ts', '.tsx', '.less'],
 		alias: {
 			'@nx-js/observer-util': '@nx-js/observer-util/dist/es.es6.js',
-			'@button': path.resolve(__dirname, './src/components/reusable/Button/Button.tsx'),
 			'@framework': path.resolve(__dirname, './framework'),
 			'~': path.resolve(__dirname, './node_modules'),
-			'@reusable': path.resolve(__dirname, './src/components/reusable'),
-			'@components': path.resolve(__dirname, './src/components'),
-			'@enums': path.resolve(__dirname, './src/enums'),
-			'@router': path.resolve(__dirname, './src/router/index.ts'),
-			'@store': path.resolve(__dirname, './src/store'),
-			'@mixins': path.resolve(__dirname, './src/styles/mixins.less'),
-			'@variables': path.resolve(__dirname, './src/styles/variables.less'),
-			'@styles': path.resolve(__dirname, './src/styles'),
+			'@reusable': path.resolve(__dirname, './src/view/components/reusable'),
+			'@components': path.resolve(__dirname, './src/view/components'),
+			'@mixins': path.resolve(__dirname, './src/view/styles/mixins.less'),
+			'@variables': path.resolve(__dirname, './src/view/styles/variables.less'),
+			'@styles': path.resolve(__dirname, './src/view/styles'),
 			'@utils': path.resolve(__dirname, './src/utils'),
-			'@views': path.resolve(__dirname, './src/views'),
+			'@screens': path.resolve(__dirname, './src/view/screens'),
 			'@': path.resolve(__dirname, './src')
 		}
 	},

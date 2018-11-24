@@ -12,10 +12,6 @@ const acceptorModules = [
 	CounterAcceptor
 ]
 
-export const acceptor = (model, present) => {
-	console.log('acceptor');
-	console.log('model', model);
-	console.log('present', present);
-
-	return acceptorModules.reduce(O, O(model, present));
+export const acceptor = (model, proposal) => {
+	return acceptorModules.reduce(O, O(model, proposal));
 };

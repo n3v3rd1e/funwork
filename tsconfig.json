@@ -13,18 +13,14 @@
 		"skipLibCheck": true,
 		"paths": {
 			"~": ["node_modules"],
-			"@button": ["src/components/reusable/Button/Button.tsx"],
 			"@framework/*": ["framework/*"],
-			"@reusable/*": ["src/components/reusable/*"],
-			"@components/*": ["src/components/*"],
-			"@enums/*": ["src/enums/*"],
-			"@router": ["src/router/index.ts"],
-			"@store/*": ["src/store/*"],
-			"@mixins": ["src/styles/mixins.less"],
-			"@variables": ["src/styles/variables.less"],
-			"@styles/*": ["src/styles/*"],
+			"@reusable/*": ["src/view/components/reusable/*"],
+			"@components/*": ["src/view/components/*"],
+			"@mixins": ["src/view/styles/mixins.less"],
+			"@variables": ["src/view/styles/variables.less"],
+			"@styles/*": ["src/view/styles/*"],
 			"@utils/*": ["src/utils/*"],
-			"@views/*": ["src/views/*"],
+			"@screens/*": ["src/view/screens/*"],
 			"@/*": ["src/*"]
 		}
 	}

@@ -1,7 +1,7 @@
-import Snabbdom from 'snabbdom-pragma';
+import Snabbdom from 'snabbdom-jsx';
 Snabbdom;
 
-const Counter = actions => state => {
+const Counter = ({ actions, ...state }) => {
 	return (
 		<div className="counter">
 			<div className="count">The current count is {state.count}</div>

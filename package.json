@@ -63,7 +63,7 @@
 		"sanctuary": "^0.15.0",
 		"sanctuary-def": "^0.18.1",
 		"snabbdom": "^0.7.2",
-		"snabbdom-pragma": "^2.7.0",
+		"snabbdom-jsx": "^0.4.2",
 		"style-loader": "^0.23.1",
 		"sum-type": "^0.12.0"
 	}

@@ -2620,7 +2620,7 @@ extend-shallow@^3.0.0, extend-shallow@^3.0.2:
     assign-symbols "^1.0.0"
     is-extendable "^1.0.1"
 
-extend@^3.0.0, extend@~3.0.2:
+extend@~3.0.2:
   version "3.0.2"
   resolved "https://registry.yarnpkg.com/extend/-/extend-3.0.2.tgz#f8b1136b4071fbd8eb140aff858b1019ec2915fa"
   integrity sha512-fjquC59cD7CyW6urNXK0FBufkZcoiGG80wTuPujX590cB5Ttln20E2UB4S/WARVqhXffZl2LNgS+gQdPIIim/g==
@@ -5754,14 +5754,14 @@ simple-swizzle@^0.2.2:
   dependencies:
     is-arrayish "^0.3.1"
 
-snabbdom-pragma@^2.7.0:
-  version "2.7.0"
-  resolved "https://registry.yarnpkg.com/snabbdom-pragma/-/snabbdom-pragma-2.7.0.tgz#e245014c40e123d1a13a40a6b4a1a8914626b65b"
-  integrity sha1-4kUBTEDhI9GhOkCmtKGokUYmtls=
+snabbdom-jsx@^0.4.2:
+  version "0.4.2"
+  resolved "https://registry.yarnpkg.com/snabbdom-jsx/-/snabbdom-jsx-0.4.2.tgz#e580682d60b4cc1da9898c6a0bacfcd062a0cffc"
+  integrity sha512-6akqPyuossD3niO3RCgaqAIrQ6ylBI+shzUKukIwqkNOybCmgst81khJ48BHYtEamQ7ltlFaEKjvKi3N0NPNVw==
   dependencies:
-    extend "^3.0.0"
+    snabbdom "^0.7.0"
 
-snabbdom@^0.7.2:
+snabbdom@^0.7.0, snabbdom@^0.7.2:
   version "0.7.2"
   resolved "https://registry.yarnpkg.com/snabbdom/-/snabbdom-0.7.2.tgz#e9d3930e6374ef8766706ccee4c6ed7b331afa64"
   integrity sha512-rDY283fYUB/3z2tjXsRRccsbVJqmGLtP+iI1tfa1DDHo2xZ49cq1leq9JmYyvZQhESuYJRY/is6WYhP2UuiRVg==

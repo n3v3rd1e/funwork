@@ -1,18 +1,17 @@
-import Snabbdom from 'snabbdom-pragma';
-import TitlesComponent from '@components/Titles/Titles';
-import CounterComponent from '@components/Counter/Counter';
+import Snabbdom from 'snabbdom-jsx';
+import Titles from '@components/Titles/Titles';
+import Counter from '@components/Counter/Counter';
 Snabbdom;
 
-const App = actions => state => {
-	const Titles = TitlesComponent({ setTitle: actions.setTitle });
-	const Counter = CounterComponent(actions);
+const App = ({ actions, ...state }) => {
+	const setTitle = actions.setTitle;
 
 	return (
 		<div id="app">
-			<Counter count={state.count} />
+			<Counter actions={actions} count={state.count} />
 			<br/>
 			<div className="titles">
-				<Titles title={state.title} />
+				<Titles key="titles" actions={{ setTitle }} title={state.title} />
 			</div>
 		</div>
 	);
