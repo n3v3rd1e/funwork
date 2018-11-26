@@ -1,15 +1,17 @@
 import { useState } from '@framework/modules/statefulComponent';
 import Snabbdom from 'snabbdom-jsx';
+import { createComponent } from '@/index';
 import './Title.less';
 Snabbdom;
 
-const Title = ({ actions, key, ...state }, children) => {
+const Title = createComponent(({ key }, children) => {
+	const { actions, state } = Title;
 	let [subtitle, setSubtitle, delSubtitle] = useState(key)('im subtitle');
 	let [color, setColor, delColor] = useState(`${key}-color`)('red');
 	const handleDestroy = () => {
 		delSubtitle();
 		delColor();
-	}
+	};
 
 	const handleSubtitleChange = e => {
 		setSubtitle(e.target.value);
@@ -17,7 +19,6 @@ const Title = ({ actions, key, ...state }, children) => {
 	const handleColorChange = e => {
 		setColor(e.target.value || 'purple');
 	};
-
 
 	return (
 		<div className="title" hook-destroy={handleDestroy}>
@@ -30,10 +31,7 @@ const Title = ({ actions, key, ...state }, children) => {
 					<input type="text" on-input={handleColorChange} />
 				</div>
 				<div>
-					<input
-						type="text"
-						on={{ input: e => actions.setTitle(e.target.value) }}
-					/>
+					<input type="text" on-input={e => actions.setTitle(e.target.value)} />
 				</div>
 			</div>
 			<div>
@@ -43,12 +41,7 @@ const Title = ({ actions, key, ...state }, children) => {
 					<h1>:(</h1>
 				</div>
 				<div>
-					<input
-						type="text"
-						on={{
-							input: handleSubtitleChange
-						}}
-					/>
+					<input type="text" value={subtitle} on-input={handleSubtitleChange} />
 				</div>
 			</div>
 			<div>
@@ -58,6 +51,6 @@ const Title = ({ actions, key, ...state }, children) => {
 			</div>
 		</div>
 	);
-};
+});
 
 export default Title;

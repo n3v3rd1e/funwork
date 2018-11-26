@@ -3,7 +3,7 @@ const config = {
 		[
 			'@babel/preset-react',
 			{
-				pragma: 'Snabbdom.html', // default pragma is React.createElement
+				pragma: 'React.createElement', // 'Snabbdom.html', // default pragma is React.createElement
 				pragmaFrag: 'Snabbdom.Fragment', // default is React.Fragment
 				throwIfNamespace: true // defaults to true
 			}

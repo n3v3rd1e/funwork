@@ -1,7 +1,5 @@
 import flyd from 'flyd';
-
-let change = true;
-export const rerender = flyd.stream(change);
+import { rerender } from '@framework/index';
 
 const _state = {};
 export const useState = key => initialValue => {
@@ -10,8 +8,7 @@ export const useState = key => initialValue => {
 
 		_state[`set${key}`] = val => {
 			_state[key] = val;
-			change = !change;
-			rerender(change);
+			rerender(!rerender());
 		};
 
 		_state[`del${key}`] = () => {

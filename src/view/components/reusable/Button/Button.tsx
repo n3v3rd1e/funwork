@@ -1,4 +1,4 @@
-import Snabbdom from 'snabbdom-pragma';
+import Snabbdom from 'snabbdom-jsx';
 Snabbdom
 import './Button.less';
 
