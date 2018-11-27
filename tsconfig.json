@@ -6,21 +6,11 @@
 		"module": "commonjs",
 		"sourceMap": true,
 		"baseUrl": "./",
-		"jsx": "preserve",
-    "jsxFactory": "Snabbdom",
 		"lib": ["esnext", "dom"],
 		"noEmit": true,
 		"skipLibCheck": true,
 		"paths": {
 			"~": ["node_modules"],
-			"@framework/*": ["framework/*"],
-			"@reusable/*": ["src/view/components/reusable/*"],
-			"@components/*": ["src/view/components/*"],
-			"@mixins": ["src/view/styles/mixins.less"],
-			"@variables": ["src/view/styles/variables.less"],
-			"@styles/*": ["src/view/styles/*"],
-			"@utils/*": ["src/utils/*"],
-			"@screens/*": ["src/view/screens/*"],
 			"@/*": ["src/*"]
 		}
 	}

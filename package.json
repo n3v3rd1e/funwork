@@ -1,6 +1,6 @@
 {
-	"name": "funwork",
-	"version": "1.12.3",
+	"name": "funwork-js",
+	"version": "0.0.1",
 	"description": "Functional framework",
 	"main": "index.js",
 	"repository": "git@github.com:n3v3rd1e/funwork.git",

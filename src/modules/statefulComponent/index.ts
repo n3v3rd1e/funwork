@@ -1,5 +1,4 @@
-import flyd from 'flyd';
-import { rerender } from '@framework/index';
+import { rerender } from '@/index';
 
 const _state = {};
 export const useState = key => initialValue => {

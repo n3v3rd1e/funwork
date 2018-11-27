@@ -1,21 +1,11 @@
 const config = {
-	presets: [
-		[
-			'@babel/preset-react',
-			{
-				pragma: 'Snabbdom.html', // default pragma is React.createElement
-				pragmaFrag: 'Snabbdom.Fragment', // default is React.Fragment
-				throwIfNamespace: true // defaults to true
-			}
-		]
-	],
+	presets: [],
 	plugins: [
 		["@babel/plugin-transform-typescript", { isTSX: true, jsxPragma: 'Snabbdom', allExtensions: true }],
 		["@babel/plugin-syntax-object-rest-spread"],
 		['@babel/plugin-proposal-async-generator-functions', { loose: true }],
 		['@babel/plugin-syntax-dynamic-import'],
 		['@babel/proposal-class-properties', { loose: true }],
-		['@babel/proposal-decorators', { loose: true, legacy: true }],
 		['@babel/proposal-object-rest-spread', { loose: true }]
 	],
 	ignore: ['node_modules', 'build']
