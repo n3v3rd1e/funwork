@@ -12,9 +12,9 @@ import ReactDOM from 'react-dom';
 
 const patch = init([classMode, props, style, eventlisteners]);
 
-const reactPatch = (rootNode, vNode) => {
-	return ReactDOM.render(vNode, rootNode).parentNode;
-};
+// const reactPatch = (rootNode, vNode) => {
+// 	return ReactDOM.render(vNode, rootNode).parentNode;
+// };
 
 const funwork = new Funwork(
 	{
@@ -25,8 +25,8 @@ const funwork = new Funwork(
 		nap,
 		router,
 	},
-	reactPatch
-	//patch
+	// reactPatch
+	patch
 );
 
 export const { createComponent } = funwork;
@@ -37,23 +37,3 @@ if (module.hot) {
 		funwork.mount('#app', App);
 	});
 }
-
-// const preparedApp = prepareApp(
-// 	{
-// 		model,
-// 		acceptor,
-// 		state,
-// 		actions,
-// 		nap,
-// 	},
-// 	patch
-// );
-
-// export const { createComponent } = preparedApp;
-// import('@/App').then(App => preparedApp.mount('#app')(App.default));
-
-// if (module.hot) {
-// 	module.hot.accept('@/App', App => {
-// 		preparedApp.mount('#app')(App);
-// 	});
-// }

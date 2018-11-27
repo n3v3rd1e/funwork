@@ -3,14 +3,14 @@ const config = {
 		[
 			'@babel/preset-react',
 			{
-				pragma: 'React.createElement', // 'Snabbdom.html', // default pragma is React.createElement
+				pragma: 'Snabbdom.html', // default pragma is React.createElement
 				pragmaFrag: 'Snabbdom.Fragment', // default is React.Fragment
 				throwIfNamespace: true // defaults to true
 			}
 		]
 	],
 	plugins: [
-		["@babel/plugin-transform-typescript", { isTSX: true, jsxPragma: 'Snabbdom.createElement', allExtensions: true }],
+		["@babel/plugin-transform-typescript", { isTSX: true, jsxPragma: 'Snabbdom', allExtensions: true }],
 		["@babel/plugin-syntax-object-rest-spread"],
 		['@babel/plugin-proposal-async-generator-functions', { loose: true }],
 		['@babel/plugin-syntax-dynamic-import'],
