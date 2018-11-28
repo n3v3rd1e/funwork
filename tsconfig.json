@@ -2,15 +2,13 @@
 	"compilerOptions": {
 		"allowSyntheticDefaultImports": true,
 		"target": "es5",
+		"module": "es2015",
 		"moduleResolution": "node",
-		"module": "commonjs",
 		"sourceMap": true,
+		"declaration": true,
+		"outDir": "./dist",
 		"baseUrl": "./",
-		"lib": ["esnext", "dom"],
-		"noEmit": true,
-		"skipLibCheck": true,
 		"paths": {
-			"~": ["node_modules"],
 			"@/*": ["src/*"]
 		}
 	}

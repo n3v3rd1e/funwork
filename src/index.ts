@@ -1,4 +1,5 @@
 import flyd from 'flyd';
+import O from 'patchinko/immutable';
 import { prepareState } from './utils';
 import { useState } from './modules/statefulComponent';
 
@@ -12,13 +13,18 @@ export default class Funwork {
 	state;
 	patch;
 	createComponent;
+	createAcceptor
 	mount;
 
 	constructor(SAM, patch) {
 		this.patch = patch;
 		this.present = flyd.stream();
 		this.actions = SAM.actions(this.present);
-		this.model = flyd.scan(SAM.acceptor, SAM.model, this.present);
+		this.model = flyd.scan(
+			SAM.acceptor,
+			SAM.model,
+			this.present.map(item => ({ keys: item.keys, value: O(item.value) }))
+		);
 		this.state = flyd.map(prepareState(SAM.state), this.model);
 
 		this.createComponent = this._createComponent.bind(this);
@@ -28,13 +34,21 @@ export default class Funwork {
 		flyd.on(SAM.router, this.state);
 	}
 
-	_createComponent(component) {
-		Object.defineProperty(component, 'state', {
-			enumerable: true,
-			configurable: true,
-			get: () => this.state()
-		});
-		component.actions = this.actions;
+	// Fix somehow, to not have a need of including first argument
+	_createComponent(
+		component,
+		{ actions = [], state = [] } = { actions: [], state: [] }
+	) {
+		for (const action of actions) {
+			component[action] = this.actions[action];
+		}
+		for (const item of state) {
+			Object.defineProperty(component, item, {
+				enumerable: true,
+				configurable: true,
+				get: () => this.state()[item]
+			});
+		}
 		return component;
 	}
 
@@ -49,12 +63,15 @@ export default class Funwork {
 			)
 		);
 
-		flyd.scan(
-			(acc, val) => {
-				return this.patch(acc, val);
-			},
-			rootNode,
-			view
-		);
+		flyd.scan(this.patch, rootNode, view);
 	}
+}
+
+
+export function createAcceptor(key, acceptFunction) {
+	return (model, proposal) => {
+		if (!proposal.keys.includes(key)) return model;
+		const appliedProposal = proposal.value.apply(model);
+		return acceptFunction(model, appliedProposal);
+	};
 }

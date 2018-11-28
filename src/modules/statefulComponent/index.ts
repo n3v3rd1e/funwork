@@ -1,4 +1,4 @@
-import { rerender } from '@/index';
+import { rerender } from '../../index';
 
 const _state = {};
 export const useState = key => initialValue => {

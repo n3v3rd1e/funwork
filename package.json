@@ -1,13 +1,17 @@
 {
 	"name": "funwork-js",
-	"version": "0.0.1",
+	"version": "0.0.20",
 	"description": "Functional framework",
-	"main": "index.js",
+	"main": "dist/index.js",
+	"types": "dist/index.d.ts",
 	"repository": "git@github.com:n3v3rd1e/funwork.git",
 	"author": "n3v3rd1e <n3v3rd1e6@gmail.com>",
 	"license": "MIT",
 	"scripts": {
-		"build": "cross-env NODE_ENV=production webpack --config webpack.config.js"
+		"build": "rimraf dist && tsc"
+	},
+	"publishConfig": {
+		"access": "public"
 	},
 	"devDependencies": {
 		"@babel/core": "^7.1.5",
@@ -29,6 +33,7 @@
 		"friendly-errors-webpack-plugin": "^1.7.0",
 		"prettier": "^1.15.2",
 		"progress-bar-webpack-plugin": "^1.11.0",
+		"rimraf": "^2.6.2",
 		"ts-loader": "^5.3.0",
 		"tslint": "^5.11.0",
 		"tslint-config-airbnb": "^5.11.0",
