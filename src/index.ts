@@ -13,18 +13,14 @@ export default class Funwork {
 	state;
 	patch;
 	createComponent;
-	createAcceptor
+	createAcceptor;
 	mount;
 
 	constructor(SAM, patch) {
 		this.patch = patch;
 		this.present = flyd.stream();
 		this.actions = SAM.actions(this.present);
-		this.model = flyd.scan(
-			SAM.acceptor,
-			SAM.model,
-			this.present.map(item => ({ keys: item.keys, value: O(item.value) }))
-		);
+		this.model = flyd.scan(SAM.acceptor, SAM.model, this.present);
 		this.state = flyd.map(prepareState(SAM.state), this.model);
 
 		this.createComponent = this._createComponent.bind(this);
@@ -66,7 +62,6 @@ export default class Funwork {
 		flyd.scan(this.patch, rootNode, view);
 	}
 }
-
 
 export function createAcceptor(key, acceptFunction) {
 	return (model, proposal) => {
