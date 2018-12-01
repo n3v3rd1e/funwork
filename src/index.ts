@@ -63,10 +63,16 @@ export default class Funwork {
 	}
 }
 
-export function createAcceptor(key, acceptFunction) {
+export function createAcceptor(keys, acceptFunction) {
 	return (model, proposal) => {
-		if (!proposal.keys.includes(key)) return model;
-		const appliedProposal = proposal.value.apply(model);
+		if (!keys.every(key => proposal.keys.includes(key))) return model;
+		if (!proposal.keys.every(key => keys.includes(key))) return model;
+
+		const preparedProposal = keys.reduce((acc, key) => {
+			acc[key] = model[key];
+			return acc;
+		}, {});
+		const appliedProposal = proposal.value.apply(preparedProposal);
 		return acceptFunction(model, appliedProposal);
 	};
 }
