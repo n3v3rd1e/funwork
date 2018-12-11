@@ -20,14 +20,15 @@ export default class Funwork {
 		this.patch = patch;
 		this.present = flyd.stream();
 		this.actions = SAM.actions(this.present);
-		this.model = flyd.scan(SAM.acceptor, SAM.model, this.present);
+		const model = O(SAM.model, SAM.router(SAM.model));
+		this.model = flyd.scan(SAM.acceptor, model, this.present);
 		this.state = flyd.map(prepareState(SAM.state), this.model);
 
 		this.createComponent = this._createComponent.bind(this);
 		this.mount = this._mount.bind(this);
 
 		flyd.on(SAM.nap(this.actions), this.state);
-		flyd.on(SAM.router, this.state);
+		flyd.on(SAM.router, this.model);
 	}
 
 	// Fix somehow, to not have a need of including first argument
@@ -61,18 +62,4 @@ export default class Funwork {
 
 		flyd.scan(this.patch, rootNode, view);
 	}
-}
-
-export function createAcceptor(keys, acceptFunction) {
-	return (model, proposal) => {
-		if (!keys.every(key => proposal.keys.includes(key))) return model;
-		if (!proposal.keys.every(key => keys.includes(key))) return model;
-
-		const preparedProposal = keys.reduce((acc, key) => {
-			acc[key] = model[key];
-			return acc;
-		}, {});
-		const appliedProposal = proposal.value.apply(preparedProposal);
-		return acceptFunction(model, appliedProposal);
-	};
 }
