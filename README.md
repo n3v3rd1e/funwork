@@ -133,16 +133,6 @@ const acitons = present => ({
 ## View
 
 Funwork js is liberal in the usage of the view layer, only requirement is, that components are functions.
-If we want to use it with React for example, it would look like this:
-
-``` js
-import { render } from 'react-dom';
-
-// function which handles rerendering has its argument in different order as React's render function
-const patch = (rootNode, vNode) => {
-  return render(vNode, rootNode).parentNode;
-};
-```
 
 ## Main file
 
@@ -155,6 +145,11 @@ import { render } from 'react-dom';
 import actions from './actions';
 import { acceptor, model, router } from './model';
 import { nap, state } from './state';
+
+// function which handles rerendering has its argument in different order as React's render function
+const patch = (rootNode, vNode) => {
+  return render(vNode, rootNode).parentNode;
+};
 
 // init
 const funwork = new Funwork(
